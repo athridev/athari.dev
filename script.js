@@ -6,12 +6,12 @@
   "use strict";
 
   /* ---------- Newsletter form backend ----------
-     Frontend-only for now. To go live, set FORM_ENDPOINT to a
-     Formspree/Beehiiv/ConvertKit/serverless endpoint that accepts
-     a JSON POST of { name, email, role, interest }, e.g.:
-       const FORM_ENDPOINT = "https://formspree.io/f/YOUR_ID";
+     Subscribers are stored in Vercel Blob via a small serverless
+     endpoint (athridev/athari-subscribe on Vercel). To switch to a
+     newsletter platform later (Beehiiv/ConvertKit/etc.), just point
+     this at that provider's endpoint instead.
   */
-  const FORM_ENDPOINT = "";
+  const FORM_ENDPOINT = "https://athari-subscribe.vercel.app/api/subscribe";
 
   /* ---------- Nav scroll state ---------- */
   const nav = document.getElementById("nav");
