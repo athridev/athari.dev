@@ -293,52 +293,23 @@
               <li>Unsubscribe anytime</li>
             </ul>
           </div>
-          <form class="subscribe-form" id="subscribe-form" novalidate>
-            <div class="field">
-              <label for="f-name">Name</label>
-              <input type="text" id="f-name" name="name" placeholder="Your name" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="f-email">Email</label>
-              <input type="email" id="f-email" name="email" placeholder="you@company.com" autocomplete="email" required>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="f-role">Role</label>
-                <div class="select-wrap">
-                  <select id="f-role" name="role" required>
-                    <option value="" disabled selected>Select your role</option>
-                    <option>Executive</option>
-                    <option>Founder</option>
-                    <option>Hiring Manager</option>
-                    <option>Engineer</option>
-                    <option>Recruiter</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <label for="f-interest">Primary interest</label>
-                <div class="select-wrap">
-                  <select id="f-interest" name="interest" required>
-                    <option value="" disabled selected>Select an interest</option>
-                    <option>AI</option>
-                    <option>Cloud</option>
-                    <option>DevOps</option>
-                    <option>DevSecOps</option>
-                    <option>Platform Engineering</option>
-                    <option>Tech Hiring</option>
-                    <option>Career Opportunities</option>
-                    <option>All</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-gold btn-block" id="submit-btn">
-              <span class="btn-label">Join the newsletter</span>
-            </button>
-            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-          </form>
+          <!--
+            Subscribers are collected and managed by Athari Risala
+            (risala.athari.dev/admin) — this site has no backend of its own.
+            The iframe is Risala's official embed (Settings -> Embed
+            snippet): self-contained, signs its own anti-bot token per
+            render, shows its own inline success state. No JS of ours
+            needed; see docs/api/public/subscribe/route.ts in that repo for
+            the zero-JS <form> alternative if this ever needs to change.
+          -->
+          <iframe
+            src="https://risala.athari.dev/embed"
+            width="100%"
+            height="440"
+            style="border:0; border-radius: 14px;"
+            title="Subscribe to Athari.dev"
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
     </section>
