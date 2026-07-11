@@ -582,6 +582,21 @@ em {
   transform: rotate(-45deg);
 }
 
+.subscribe-archive {
+  margin-top: 22px;
+  font-size: 14.5px;
+  color: var(--text-dim);
+}
+
+.subscribe-archive a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.subscribe-archive a:hover { border-bottom-color: var(--gold); }
+
 /* Form */
 
 .subscribe-form { display: flex; flex-direction: column; gap: 18px; position: relative; }
