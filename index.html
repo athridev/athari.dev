@@ -18,12 +18,16 @@
   <meta property="og:image" content="https://athari.dev/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Athari.dev — AI, Cloud &amp; Tech Talent Signals for the Middle East">
+  <meta property="og:locale" content="en_US">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Athari.dev — AI, Cloud &amp; Tech Talent Signals for the Middle East">
   <meta name="twitter:description" content="A premium newsletter and community decoding the Middle East's engineering economy.">
   <meta name="twitter:image" content="https://athari.dev/og.jpg">
+  <meta name="twitter:image:alt" content="Athari.dev — AI, Cloud &amp; Tech Talent Signals for the Middle East">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -37,20 +41,89 @@
 
   <link rel="stylesheet" href="styles.css">
 
+  <!-- No-JS fallback: never leave reveal content hidden if script.js can't run -->
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
   <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Athari.dev",
-    "url": "https://athari.dev",
-    "logo": "https://athari.dev/apple-touch-icon.png",
-    "description": "AI, Cloud & Tech Talent Signals for the Middle East — a premium newsletter and community for the region's engineering economy.",
-    "areaServed": ["AE", "SA", "QA", "KW", "BH", "OM"]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://athari.dev/#org",
+        "name": "Athari.dev",
+        "alternateName": "Athari",
+        "url": "https://athari.dev/",
+        "logo": "https://athari.dev/apple-touch-icon.png",
+        "description": "AI, Cloud & Tech Talent Signals for the Middle East — a premium newsletter and community for the region's engineering economy.",
+        "areaServed": ["AE", "SA", "QA", "KW", "BH", "OM"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://athari.dev/#website",
+        "url": "https://athari.dev/",
+        "name": "Athari.dev",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://athari.dev/#org" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is it free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Athari is free to join — one high-signal email, no paywall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often does it send?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Regularly and deliberately, not daily. Tightly edited issues go out when there's something worth your attention — no filler to hit a schedule."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which markets does it cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Middle East's engineering economy — Dubai, Riyadh, Abu Dhabi, Doha, and the wider Gulf — across AI adoption, cloud and platform engineering, and the tech hiring market."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who writes it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "People who understand the work — written engineering-first, deep enough for senior engineers and clear enough for the boardroom."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I unsubscribe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anytime, in one click. Every issue includes an unsubscribe link, and there's no spam — ever."
+        }
+      }
+    ]
   }
   </script>
 </head>
 <body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
 
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-glow" aria-hidden="true"></div>
@@ -58,7 +131,7 @@
   <!-- ============ NAV ============ -->
   <header class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="brand" aria-label="Athari.dev — home">
+      <a href="/" class="brand" aria-label="Athari.dev — home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="3"  y="13" width="3" height="8"  rx="1.5" fill="currentColor" opacity="0.45"/>
@@ -78,12 +151,12 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="container">
         <p class="eyebrow reveal">
-          <span class="eyebrow-ar" lang="ar">أَثَر</span>
+          <span class="eyebrow-ar" lang="ar" dir="rtl">أَثَر</span>
           <span class="eyebrow-sep"></span>
           athar — a trace. a signal. an impact.
         </p>
@@ -164,6 +237,18 @@
             <p>Dubai, Saudi, and wider Middle East tech-market intelligence — funding, government programmes, new entrants, and where the momentum is going next.</p>
           </article>
         </div>
+        <div class="topics-strip reveal" aria-label="Topics we track">
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Sovereign cloud</span>
+          <span class="tag">GenAI agents</span>
+          <span class="tag">SRE</span>
+          <span class="tag">DevSecOps</span>
+          <span class="tag">Platform engineering</span>
+          <span class="tag">Comp benchmarks</span>
+          <span class="tag">Visa &amp; relocation</span>
+          <span class="tag">Hyperscaler regions</span>
+        </div>
       </div>
     </section>
 
@@ -204,7 +289,7 @@
             <p class="kicker">03 — Approach</p>
             <h2>Why Athari</h2>
             <p class="section-sub">
-              <em>Athari</em> comes from the Arabic <span lang="ar">أثر</span> — a trace, a mark,
+              <em>Athari</em> comes from the Arabic <span lang="ar" dir="rtl">أثر</span> — a trace, a mark,
               a signal. That's the standard: every issue should leave one.
             </p>
           </div>
@@ -278,12 +363,76 @@
       </div>
     </section>
 
+    <!-- ============ WHAT LANDS IN YOUR INBOX ============ -->
+    <section class="section" id="inbox">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">05 — Sample issues</p>
+          <h2>What lands in your inbox</h2>
+          <p class="section-sub">A feel for the signal — tightly edited, regionally specific, built to be acted on.</p>
+        </div>
+        <div class="grid grid-inbox">
+          <a class="card inbox-card reveal" href="https://risala.athari.dev/archive" target="_blank" rel="noopener">
+            <div class="inbox-date">Recent issue</div>
+            <h3>Riyadh's cloud region gold rush</h3>
+            <p>Who's actually hiring for the new hyperscaler regions, the platform roles opening because of them, and the comp it's taking to fill them.</p>
+            <span class="inbox-link">Read in the archive &rarr;</span>
+          </a>
+          <a class="card inbox-card reveal" href="https://risala.athari.dev/archive" target="_blank" rel="noopener">
+            <div class="inbox-date">Recent issue</div>
+            <h3>The AI-agent hiring shift</h3>
+            <p>How GenAI agents are quietly redrawing engineering org charts across the Gulf — which skills compound, and which are getting priced down.</p>
+            <span class="inbox-link">Read in the archive &rarr;</span>
+          </a>
+          <a class="card inbox-card reveal" href="https://risala.athari.dev/archive" target="_blank" rel="noopener">
+            <div class="inbox-date">Recent issue</div>
+            <h3>Sovereign cloud, real constraints</h3>
+            <p>Data residency and sovereign-cloud mandates are reshaping architecture decisions — and the SRE and DevSecOps demand that follows them.</p>
+            <span class="inbox-link">Read in the archive &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">06 — FAQ</p>
+          <h2>Questions</h2>
+          <p class="section-sub">The essentials, before you subscribe.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>Is it free?</summary>
+            <div class="faq-answer">Yes. Athari is free to join — one high-signal email, no paywall.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How often does it send?</summary>
+            <div class="faq-answer">Regularly and deliberately, not daily. Tightly edited issues go out when there's something worth your attention — no filler to hit a schedule.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Which markets does it cover?</summary>
+            <div class="faq-answer">The Middle East's engineering economy — Dubai, Riyadh, Abu Dhabi, Doha, and the wider Gulf — across AI adoption, cloud and platform engineering, and the tech hiring market.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Who writes it?</summary>
+            <div class="faq-answer">People who understand the work — written engineering-first, deep enough for senior engineers and clear enough for the boardroom.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I unsubscribe?</summary>
+            <div class="faq-answer">Anytime, in one click. Every issue includes an unsubscribe link, and there's no spam — ever.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ SUBSCRIBE ============ -->
     <section class="section section-subscribe" id="subscribe">
       <div class="container">
         <div class="subscribe-card reveal">
           <div class="subscribe-copy">
-            <p class="kicker">05 — Subscribe</p>
+            <p class="kicker">07 — Subscribe</p>
             <h2>Get the signal.</h2>
             <p>Join executives, engineering leaders, and senior engineers across the Middle East.
                One high-signal email — the market, decoded.</p>
@@ -305,14 +454,18 @@
             needed; see docs/api/public/subscribe/route.ts in that repo for
             the zero-JS <form> alternative if this ever needs to change.
           -->
-          <iframe
-            src="https://risala.athari.dev/embed"
-            width="100%"
-            height="440"
-            style="border:0; border-radius: 14px;"
-            title="Subscribe to Athari.dev"
-            loading="lazy"
-          ></iframe>
+          <div class="subscribe-embed-wrap">
+            <iframe
+              id="subscribe-embed"
+              src="https://risala.athari.dev/embed"
+              width="100%"
+              height="520"
+              title="Subscribe to the Athari.dev newsletter"
+              aria-label="Subscribe to the Athari.dev newsletter"
+              loading="lazy"
+            ></iframe>
+            <p class="subscribe-fallback">Form not loading? <a href="https://risala.athari.dev/embed" target="_blank" rel="noopener">Open the subscribe form &rarr;</a></p>
+          </div>
         </div>
       </div>
     </section>
@@ -341,7 +494,7 @@
         <a href="#subscribe">Subscribe</a>
       </nav>
       <p class="footer-meta">
-        <span lang="ar" class="footer-ar">أَثَر</span> — a trace, a signal, an impact.<br>
+        <span lang="ar" dir="rtl" class="footer-ar">أَثَر</span> — a trace, a signal, an impact.<br>
         © <span id="year">2026</span> Athari.dev · Dubai, UAE
       </p>
     </div>

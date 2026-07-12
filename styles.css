@@ -10,7 +10,7 @@
   --border-strong: rgba(255, 255, 255, 0.16);
   --text: #ece9e2;
   --text-dim: #a3a099;
-  --text-faint: #6d6b66;
+  --text-faint: #8b897f;
   --gold: #c9a45c;
   --gold-bright: #e6cd92;
   --gold-dim: rgba(201, 164, 92, 0.14);
@@ -526,6 +526,117 @@ em {
   padding: 5px 12px;
 }
 
+/* ============ Topics strip ============ */
+
+.topics-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.topics-strip .tag {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 12.5px;
+  font-weight: 450;
+}
+
+/* ============ Inbox teasers ============ */
+
+.grid-inbox { grid-template-columns: repeat(3, 1fr); }
+
+.inbox-card { display: flex; flex-direction: column; }
+
+.inbox-date {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 18px;
+}
+
+.inbox-card h3 { margin-bottom: 10px; }
+
+.inbox-card p {
+  font-size: 14.5px;
+  color: var(--text-dim);
+  line-height: 1.62;
+  margin-bottom: 20px;
+}
+
+.inbox-link {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.inbox-link:hover { color: var(--gold-bright); }
+
+/* ============ FAQ ============ */
+
+.faq-list {
+  border-top: 1px solid var(--border);
+  max-width: 780px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 4px;
+  font-size: 16.5px;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary:hover { color: var(--gold-bright); }
+
+.faq-item summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  transition: transform 0.25s var(--ease);
+}
+
+.faq-item[open] summary::after { transform: rotate(-135deg); }
+
+.faq-item .faq-answer {
+  padding: 0 4px 26px;
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 64ch;
+}
+
+.faq-item .faq-answer a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.faq-item .faq-answer a:hover { border-bottom-color: var(--gold); }
+
 /* ============ Subscribe ============ */
 
 .section-subscribe { padding-bottom: 128px; }
@@ -596,6 +707,30 @@ em {
 }
 
 .subscribe-archive a:hover { border-bottom-color: var(--gold); }
+
+.subscribe-embed-wrap { display: flex; flex-direction: column; }
+
+.subscribe-card iframe {
+  width: 100%;
+  min-height: 500px;
+  border: 0;
+  border-radius: 14px;
+}
+
+.subscribe-fallback {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--text-faint);
+}
+
+.subscribe-fallback a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.subscribe-fallback a:hover { border-bottom-color: var(--gold); }
 
 /* Form */
 
@@ -717,13 +852,42 @@ em {
 
 .footer-ar { color: var(--gold); font-size: 15px; }
 
+/* ============ Accessibility ============ */
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -56px;
+  z-index: 200;
+  background: var(--bg-raised);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px 16px;
+  text-decoration: none;
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus { top: 12px; }
+
+:where(a, button, .btn):focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
 /* ============ Reveal animation ============ */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(22px);
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
   transition-delay: var(--d, 0s);
+}
+
+/* Hidden state is opt-in: only applied once JS arms it, so if script.js
+   never runs (JS disabled, network/parse failure) content stays visible. */
+.reveal.js-armed {
+  opacity: 0;
+  transform: translateY(22px);
 }
 
 .reveal.in {
@@ -739,6 +903,8 @@ em {
   .grid-coverage .card:nth-child(5) { grid-column: span 2 !important; }
 
   .grid-audience { grid-template-columns: repeat(2, 1fr); column-gap: 32px; }
+
+  .grid-inbox { grid-template-columns: 1fr; }
 
   .why-layout { grid-template-columns: 1fr; gap: 48px; }
   .why-layout .section-head { position: static; }
@@ -784,7 +950,8 @@ em {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .bg-grid, .bg-glow, .cities-track { animation: none; }
-  .reveal {
+  .reveal,
+  .reveal.js-armed {
     opacity: 1;
     transform: none;
     transition: none;

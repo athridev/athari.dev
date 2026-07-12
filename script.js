@@ -32,7 +32,12 @@
       },
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
-    revealEls.forEach((el) => io.observe(el));
+    // Only hide elements now that the observer that will un-hide them is
+    // guaranteed to run — so a failed/blocked script leaves content visible.
+    revealEls.forEach((el) => {
+      el.classList.add("js-armed");
+      io.observe(el);
+    });
   }
 
   /* ---------- Footer year ---------- */
@@ -42,4 +47,17 @@
      SUBSCRIBE section in index.html) — Risala handles its own submit
      flow, anti-bot token, and success state, so there's nothing to wire
      up here. */
+
+  /* ---------- Progressive iframe auto-fit ---------- */
+  /* Safe no-op unless Risala's embed posts its height. The static
+     min-height in CSS is the reliable floor; this only ever grows the
+     frame to fit taller states (region open, error line, success copy). */
+  window.addEventListener("message", (e) => {
+    if (e.origin !== "https://risala.athari.dev") return;
+    const h = e.data && e.data.athariEmbedHeight;
+    const frame = document.getElementById("subscribe-embed");
+    if (frame && typeof h === "number" && h > 0) {
+      frame.style.height = h + "px";
+    }
+  });
 })();
