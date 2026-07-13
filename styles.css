@@ -762,21 +762,6 @@ em {
   transform: rotate(-45deg);
 }
 
-.subscribe-archive {
-  margin-top: 22px;
-  font-size: 14.5px;
-  color: var(--text-dim);
-}
-
-.subscribe-archive a {
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.subscribe-archive a:hover { border-bottom-color: var(--gold); }
-
 .subscribe-embed-wrap { display: flex; flex-direction: column; }
 
 .subscribe-card iframe {
@@ -785,21 +770,6 @@ em {
   border: 0;
   border-radius: 14px;
 }
-
-.subscribe-fallback {
-  margin-top: 14px;
-  font-size: 13.5px;
-  color: var(--text-faint);
-}
-
-.subscribe-fallback a {
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.subscribe-fallback a:hover { border-bottom-color: var(--gold); }
 
 /* Form */
 
