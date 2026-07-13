@@ -362,13 +362,7 @@ em {
 
 .grid { display: grid; gap: 16px; }
 
-.grid-coverage { grid-template-columns: repeat(6, 1fr); }
-
-.grid-coverage .card:nth-child(1) { grid-column: span 2; }
-.grid-coverage .card:nth-child(2) { grid-column: span 2; }
-.grid-coverage .card:nth-child(3) { grid-column: span 2; }
-.grid-coverage .card:nth-child(4) { grid-column: span 3; }
-.grid-coverage .card:nth-child(5) { grid-column: span 3; }
+.grid-coverage { grid-template-columns: repeat(3, 1fr); }
 
 .card {
   position: relative;
@@ -417,28 +411,15 @@ em {
 
 /* Audience */
 
-.grid-audience {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--border);
-}
+.grid-audience { grid-template-columns: repeat(2, 1fr); }
 
-.audience-item {
-  padding: 36px 28px 8px 0;
-  border-top: 2px solid transparent;
-  margin-top: -1px;
-  transition: border-color 0.3s var(--ease);
-}
+.audience-card { padding: 40px 36px; }
 
-.audience-item:hover { border-top-color: var(--gold); }
+.audience-card .card-index { margin-bottom: 28px; }
 
-.audience-item h3 { margin-bottom: 12px; }
+.audience-card h3 { font-size: 20px; }
 
-.audience-item p {
-  font-size: 14.5px;
-  color: var(--text-dim);
-  line-height: 1.62;
-}
+.audience-card p { font-size: 15px; max-width: 52ch; }
 
 /* Why */
 
@@ -486,33 +467,6 @@ em {
   max-width: 52ch;
 }
 
-/* Coming soon */
-
-.soon-list { list-style: none; border-top: 1px solid var(--border); }
-
-.soon-list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 28px 8px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.25s var(--ease), padding 0.25s var(--ease);
-}
-
-.soon-list li:hover {
-  background: rgba(255, 255, 255, 0.018);
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.soon-list h3 { margin-bottom: 4px; }
-
-.soon-list p {
-  font-size: 14.5px;
-  color: var(--text-dim);
-}
-
 .tag {
   flex-shrink: 0;
   font-size: 11px;
@@ -542,41 +496,156 @@ em {
   font-weight: 450;
 }
 
-/* ============ Inbox teasers ============ */
+/* ============ Inside every issue ============ */
 
-.grid-inbox { grid-template-columns: repeat(3, 1fr); }
-
-.inbox-card { display: flex; flex-direction: column; }
-
-.inbox-date {
-  font-size: 11.5px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.85;
-  margin-bottom: 18px;
+.issue-layout {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  gap: 72px;
+  align-items: center;
 }
 
-.inbox-card h3 { margin-bottom: 10px; }
+.issue-list {
+  list-style: none;
+  counter-reset: issue;
+}
 
-.inbox-card p {
-  font-size: 14.5px;
+.issue-list li {
+  counter-increment: issue;
+  position: relative;
+  padding: 28px 0 28px 76px;
+  border-bottom: 1px solid var(--border);
+}
+
+.issue-list li:first-child { border-top: 1px solid var(--border); }
+
+.issue-list li::before {
+  content: "0" counter(issue);
+  position: absolute;
+  left: 0;
+  top: 26px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 30px;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.issue-list h3 { margin-bottom: 8px; }
+
+.issue-list p {
+  font-size: 15px;
   color: var(--text-dim);
   line-height: 1.62;
-  margin-bottom: 20px;
+  max-width: 46ch;
 }
 
-.inbox-link {
-  margin-top: auto;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+/* Email mock — the issue format, sketched. Skeleton bars stand in for
+   body copy on purpose: the format is real, the filler text isn't. */
+
+.email-mock {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 32px 64px -32px rgba(0, 0, 0, 0.6);
+}
+
+.email-chrome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.email-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.email-from {
+  margin-left: 10px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.email-body { padding: 28px 30px 32px; }
+
+.email-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-bottom: 18px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.email-brand-ar {
+  font-size: 15px;
   color: var(--gold);
-  text-decoration: none;
+  letter-spacing: 0;
 }
 
-.inbox-link:hover { color: var(--gold-bright); }
+.email-sec {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 22px 0 12px;
+}
+
+.skel {
+  height: 9px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.045));
+  margin-bottom: 9px;
+}
+
+.email-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.email-row .skel { margin-bottom: 0; }
+
+.email-row + .email-row { margin-top: 11px; }
+
+.email-bullet {
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+.email-number {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.email-number .skel { margin-bottom: 0; }
+
+.email-number-fig {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--gold);
+}
 
 /* ============ FAQ ============ */
 
@@ -898,13 +967,10 @@ em {
 /* ============ Responsive ============ */
 
 @media (max-width: 960px) {
-  .grid-coverage { grid-template-columns: repeat(2, 1fr); }
-  .grid-coverage .card { grid-column: span 1 !important; }
-  .grid-coverage .card:nth-child(5) { grid-column: span 2 !important; }
+  .grid-coverage { grid-template-columns: 1fr; }
 
-  .grid-audience { grid-template-columns: repeat(2, 1fr); column-gap: 32px; }
-
-  .grid-inbox { grid-template-columns: 1fr; }
+  .issue-layout { grid-template-columns: 1fr; gap: 48px; }
+  .email-mock { max-width: 520px; margin-inline: auto; width: 100%; }
 
   .why-layout { grid-template-columns: 1fr; gap: 48px; }
   .why-layout .section-head { position: static; }
@@ -927,17 +993,13 @@ em {
   .section { padding-top: 96px; }
   .section-subscribe { padding-bottom: 96px; }
 
-  .grid-coverage { grid-template-columns: 1fr; }
-  .grid-coverage .card,
-  .grid-coverage .card:nth-child(5) { grid-column: span 1 !important; }
-
   .grid-audience { grid-template-columns: 1fr; }
-  .audience-item { padding-right: 0; }
+  .audience-card { padding: 32px 26px; }
 
-  .why-list li { padding-left: 58px; }
+  .why-list li,
+  .issue-list li { padding-left: 58px; }
 
-  .soon-list li { flex-direction: row; align-items: flex-start; }
-  .soon-list .tag { margin-top: 4px; }
+  .email-body { padding: 22px 20px 26px; }
 
   .subscribe-card { padding: 32px 24px; border-radius: 16px; }
   .field-row { flex-direction: column; gap: 18px; }

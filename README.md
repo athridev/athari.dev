@@ -1,11 +1,11 @@
 # Athari.dev
 
-**AI, Cloud & Tech Talent Signals for the Middle East** — the landing page for the Athari newsletter and community, served at [athari.dev](https://athari.dev) via GitHub Pages.
+**The AI & Cloud Briefing for the GCC** — the landing page for the Athari newsletter, served at [athari.dev](https://athari.dev) via GitHub Pages. A weekly email for leaders and engineers: AI and cloud news decoded for the GCC and beyond, plus hiring and market insight.
 
 ## Structure
 
 ```
-index.html            Landing page (hero, coverage, audience, why, roadmap, signup)
+index.html            Landing page (hero, coverage, issue format, audience, why, FAQ, signup)
 styles.css            Full design system — premium dark theme
 script.js             Reveal animations, nav state, footer year
 404.html              Branded not-found page
