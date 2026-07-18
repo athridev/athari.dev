@@ -1,463 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Athari.dev — The AI &amp; Cloud Briefing for the GCC</title>
-  <meta name="description" content="Athari is a weekly newsletter for leaders and engineers: the AI and cloud developments that matter to the GCC and beyond, what they mean in practice, and what they're doing to the region's tech hiring market.">
-  <meta name="keywords" content="GCC tech, AI newsletter, cloud engineering, Dubai tech, Saudi Arabia tech, sovereign cloud, platform engineering, tech hiring Middle East, GCC tech talent">
-  <meta name="author" content="Athari.dev">
-  <link rel="canonical" href="https://athari.dev/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://athari.dev/">
-  <meta property="og:site_name" content="Athari.dev">
-  <meta property="og:title" content="Athari.dev — The AI &amp; Cloud Briefing for the GCC">
-  <meta property="og:description" content="A weekly newsletter for leaders and engineers — AI and cloud news decoded for the GCC and beyond, plus hiring and market insight.">
-  <meta property="og:image" content="https://athari.dev/og.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:alt" content="Athari.dev — The AI &amp; Cloud Briefing for the GCC">
-  <meta property="og:locale" content="en_US">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Athari.dev — The AI &amp; Cloud Briefing for the GCC">
-  <meta name="twitter:description" content="A weekly newsletter for leaders and engineers — AI and cloud news decoded for the GCC and beyond, plus hiring and market insight.">
-  <meta name="twitter:image" content="https://athari.dev/og.jpg">
-  <meta name="twitter:image:alt" content="Athari.dev — The AI &amp; Cloud Briefing for the GCC">
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <meta name="theme-color" content="#0b0c0e">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- No-JS fallback: never leave reveal content hidden if script.js can't run -->
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
-
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://athari.dev/#org",
-        "name": "Athari.dev",
-        "alternateName": "Athari",
-        "url": "https://athari.dev/",
-        "logo": "https://athari.dev/apple-touch-icon.png",
-        "description": "The AI & Cloud Briefing for the GCC — a weekly newsletter for leaders and engineers covering AI, cloud infrastructure, and the region's tech hiring market.",
-        "areaServed": ["AE", "SA", "QA", "KW", "BH", "OM"]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://athari.dev/#website",
-        "url": "https://athari.dev/",
-        "name": "Athari.dev",
-        "inLanguage": "en",
-        "publisher": { "@id": "https://athari.dev/#org" }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="athari.dev" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>athari.dev</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      html, body { height: 100%; }
+      body {
+        display: grid;
+        place-items: center;
+        background: #000;
+        color: #46f27a;
+        font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+        overflow: hidden;
       }
-    ]
-  }
-  </script>
-
-  <!-- FAQ structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Is it free?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Athari is free — one email a week, no paywall."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How often does it send?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Weekly. One tightly edited email, readable in about five minutes."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What does it cover?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "AI and cloud, filtered for the GCC and beyond — the model, platform, and infrastructure news that matters to the region — plus hiring and market insight: which roles are in demand, which skills are getting paid, and where the market is moving."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Who is it for?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Leaders and engineers. CTOs, VPs of engineering, founders, and heads of talent on one side; senior engineers and DevOps, platform, SRE, and data practitioners on the other."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I unsubscribe?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Anytime, in one click. Every issue includes an unsubscribe link, and there's no spam — ever."
-        }
+      /* Faint scanlines, very quiet. */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 1px, transparent 1px 3px);
+        pointer-events: none;
       }
-    ]
-  }
-  </script>
-</head>
-<body>
-
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-glow" aria-hidden="true"></div>
-
-  <!-- ============ NAV ============ -->
-  <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="/" class="brand" aria-label="Athari.dev — home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3"  y="13" width="3" height="8"  rx="1.5" fill="currentColor" opacity="0.45"/>
-            <rect x="10.5" y="8" width="3" height="13" rx="1.5" fill="currentColor" opacity="0.7"/>
-            <rect x="18" y="3"  width="3" height="18" rx="1.5" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="brand-name">Athari<span class="brand-tld">.dev</span></span>
-      </a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#coverage">Coverage</a>
-        <a href="#issue">Inside an issue</a>
-        <a href="#audience">Who it's for</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a href="#subscribe" class="btn btn-small btn-gold">Subscribe free</a>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow reveal">
-          <span class="eyebrow-ar" lang="ar" dir="rtl">أَثَر</span>
-          <span class="eyebrow-sep"></span>
-          athar — a trace. a signal. an impact.
-        </p>
-        <h1 class="hero-title reveal">
-          The AI &amp; cloud <em>briefing</em><br>
-          for the GCC.
-        </h1>
-        <p class="hero-sub reveal">
-          Every week: the AI and cloud moves that matter to the Gulf and beyond,
-          what they mean in practice, and what they're doing to the region's tech
-          hiring market. Written for the leaders and engineers building here.
-        </p>
-        <div class="hero-cta reveal">
-          <a href="#subscribe" class="btn btn-gold">Subscribe free</a>
-          <a href="https://risala.athari.dev/archive" class="btn btn-ghost" target="_blank" rel="noopener">Read past issues</a>
-        </div>
-        <p class="hero-note reveal">One email a week. Five minutes. Unsubscribe anytime.</p>
-      </div>
-      <div class="hero-cities reveal" aria-hidden="true">
-        <div class="cities-track">
-          <span>Dubai</span><span class="dot"></span>
-          <span>Riyadh</span><span class="dot"></span>
-          <span>Abu Dhabi</span><span class="dot"></span>
-          <span>Doha</span><span class="dot"></span>
-          <span>Jeddah</span><span class="dot"></span>
-          <span>Manama</span><span class="dot"></span>
-          <span>Kuwait City</span><span class="dot"></span>
-          <span>Muscat</span><span class="dot"></span>
-          <span>Cairo</span><span class="dot"></span>
-          <span>Amman</span><span class="dot"></span>
-          <!-- duplicated for seamless loop -->
-          <span>Dubai</span><span class="dot"></span>
-          <span>Riyadh</span><span class="dot"></span>
-          <span>Abu Dhabi</span><span class="dot"></span>
-          <span>Doha</span><span class="dot"></span>
-          <span>Jeddah</span><span class="dot"></span>
-          <span>Manama</span><span class="dot"></span>
-          <span>Kuwait City</span><span class="dot"></span>
-          <span>Muscat</span><span class="dot"></span>
-          <span>Cairo</span><span class="dot"></span>
-          <span>Amman</span><span class="dot"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WHAT WE COVER ============ -->
-    <section class="section" id="coverage">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">01 — Coverage</p>
-          <h2>One niche, covered properly</h2>
-          <p class="section-sub">AI and cloud in the GCC and beyond — and the hiring market they're reshaping. Three threads, every week.</p>
-        </div>
-        <div class="grid grid-coverage">
-          <article class="card reveal">
-            <div class="card-index">A1</div>
-            <h3>AI, in practice</h3>
-            <p>Model releases, agent tooling, and enterprise adoption — cut down to what changes how teams in the region build and ship. What to act on, what to ignore.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-index">A2</div>
-            <h3>Cloud &amp; infrastructure</h3>
-            <p>Hyperscaler regions, sovereign cloud, data residency, and the platform decisions shaping engineering across the Gulf.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-index">A3</div>
-            <h3>Hiring &amp; the market</h3>
-            <p>Which roles are opening, which skills are getting paid, and where the money and momentum are moving — from Dubai and Riyadh outward.</p>
-          </article>
-        </div>
-        <div class="topics-strip reveal" aria-label="Topics we track">
-          <span class="tag">GenAI agents</span>
-          <span class="tag">Sovereign cloud</span>
-          <span class="tag">Hyperscaler regions</span>
-          <span class="tag">LLM tooling</span>
-          <span class="tag">Kubernetes</span>
-          <span class="tag">Platform engineering</span>
-          <span class="tag">Data residency</span>
-          <span class="tag">DevSecOps</span>
-          <span class="tag">SRE</span>
-          <span class="tag">Comp signals</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ INSIDE EVERY ISSUE ============ -->
-    <section class="section" id="issue">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">02 — The format</p>
-          <h2>Inside every issue</h2>
-          <p class="section-sub">Four fixed sections, tightly edited. Five minutes, start to finish.</p>
-        </div>
-        <div class="issue-layout">
-          <ol class="issue-list">
-            <li class="reveal">
-              <h3>The Lead</h3>
-              <p>The one story that matters most this week — what happened, and what it means if you're building in the region.</p>
-            </li>
-            <li class="reveal">
-              <h3>Signals</h3>
-              <p>The AI and cloud developments worth your time, each in a few tight lines: the news, the regional angle, the move.</p>
-            </li>
-            <li class="reveal">
-              <h3>The Market</h3>
-              <p>The hiring pulse — roles in demand, skills commanding a premium, and notable moves across the Gulf's tech hubs.</p>
-            </li>
-            <li class="reveal">
-              <h3>One Number</h3>
-              <p>A single figure that tells a bigger story than a paragraph would.</p>
-            </li>
-          </ol>
-          <div class="email-mock reveal" aria-hidden="true">
-            <div class="email-chrome">
-              <span class="email-dot"></span>
-              <span class="email-dot"></span>
-              <span class="email-dot"></span>
-              <span class="email-from">Athari — weekly briefing</span>
-            </div>
-            <div class="email-body">
-              <div class="email-brand">
-                <span class="email-brand-ar" lang="ar" dir="rtl">أَثَر</span>
-                <span>Athari · AI &amp; cloud · GCC and beyond</span>
-              </div>
-              <div class="email-sec">The Lead</div>
-              <div class="skel" style="width:88%"></div>
-              <div class="skel" style="width:96%"></div>
-              <div class="skel" style="width:64%"></div>
-              <div class="email-sec">Signals</div>
-              <div class="email-row"><span class="email-bullet"></span><div class="skel" style="width:82%"></div></div>
-              <div class="email-row"><span class="email-bullet"></span><div class="skel" style="width:71%"></div></div>
-              <div class="email-row"><span class="email-bullet"></span><div class="skel" style="width:78%"></div></div>
-              <div class="email-sec">The Market</div>
-              <div class="skel" style="width:92%"></div>
-              <div class="skel" style="width:58%"></div>
-              <div class="email-sec">One Number</div>
-              <div class="email-number">
-                <span class="email-number-fig" aria-hidden="true">№</span>
-                <div class="skel" style="width:46%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WHO IT'S FOR ============ -->
-    <section class="section" id="audience">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">03 — Readers</p>
-          <h2>Who it's for</h2>
-          <p class="section-sub">Written for two readers — the one setting direction and the one shipping it.</p>
-        </div>
-        <div class="grid grid-audience">
-          <article class="card audience-card reveal">
-            <div class="card-index">Leaders</div>
-            <h3>The ones setting direction</h3>
-            <p>CTOs, VPs of engineering, founders, and heads of talent who need a straight answer on where AI actually pays off, which cloud constraints are coming, and what talent will cost next quarter.</p>
-          </article>
-          <article class="card audience-card reveal">
-            <div class="card-index">Engineers</div>
-            <h3>The ones shipping it</h3>
-            <p>Senior engineers and DevOps, platform, SRE, and data practitioners who want to know which skills compound, which stacks the region is betting on, and when to make their next move.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WHY ATHARI ============ -->
-    <section class="section" id="why">
-      <div class="container">
-        <div class="why-layout">
-          <div class="section-head reveal">
-            <p class="kicker">04 — Approach</p>
-            <h2>Why Athari</h2>
-            <p class="section-sub">
-              <em>Athari</em> comes from the Arabic <span lang="ar" dir="rtl">أثر</span> — a trace, a mark,
-              a signal. That's the standard: every issue should leave one.
-            </p>
-          </div>
-          <ol class="why-list">
-            <li class="reveal">
-              <h3>Signals, not noise</h3>
-              <p>Every item earns its place: what happened, why it matters here, what to do about it. No fifty-link dumps, no recycled press releases.</p>
-            </li>
-            <li class="reveal">
-              <h3>Written from inside the region</h3>
-              <p>GCC context first — regulation, sovereign cloud, government programmes, and the market's real constraints — not a global feed with "Middle East" in the subject line.</p>
-            </li>
-            <li class="reveal">
-              <h3>Engineering-first, market-aware</h3>
-              <p>Deep enough for senior engineers, clear enough for the boardroom — with the hiring market covered as seriously as the technology.</p>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">05 — FAQ</p>
-          <h2>Questions</h2>
-          <p class="section-sub">The essentials, before you subscribe.</p>
-        </div>
-        <div class="faq-list reveal">
-          <details class="faq-item">
-            <summary>Is it free?</summary>
-            <div class="faq-answer">Yes. Athari is free — one email a week, no paywall.</div>
-          </details>
-          <details class="faq-item">
-            <summary>How often does it send?</summary>
-            <div class="faq-answer">Weekly. One tightly edited email, readable in about five minutes.</div>
-          </details>
-          <details class="faq-item">
-            <summary>What does it cover?</summary>
-            <div class="faq-answer">AI and cloud, filtered for the GCC and beyond — the model, platform, and infrastructure news that matters to the region — plus hiring and market insight: which roles are in demand, which skills are getting paid, and where the market is moving.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Who is it for?</summary>
-            <div class="faq-answer">Leaders and engineers. CTOs, VPs of engineering, founders, and heads of talent on one side; senior engineers and DevOps, platform, SRE, and data practitioners on the other.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Can I unsubscribe?</summary>
-            <div class="faq-answer">Anytime, in one click. Every issue includes an unsubscribe link, and there's no spam — ever.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SUBSCRIBE ============ -->
-    <section class="section section-subscribe" id="subscribe">
-      <div class="container">
-        <div class="subscribe-card reveal">
-          <div class="subscribe-copy">
-            <p class="kicker">06 — Subscribe</p>
-            <h2>Get the briefing.</h2>
-            <p>Join leaders and engineers across the GCC. One email a week —
-               AI, cloud, and the market, decoded.</p>
-            <ul class="subscribe-points">
-              <li>Free, no paywall</li>
-              <li>Weekly — five minutes</li>
-              <li>Unsubscribe anytime</li>
-            </ul>
-          </div>
-          <!--
-            Subscribers are collected and managed by Athari Risala
-            (risala.athari.dev/admin) — this site has no backend of its own.
-            The iframe is Risala's official embed (Settings -> Embed
-            snippet): self-contained, signs its own anti-bot token per
-            render, shows its own inline success state. No JS of ours
-            needed; see docs/api/public/subscribe/route.ts in that repo for
-            the zero-JS <form> alternative if this ever needs to change.
-          -->
-          <div class="subscribe-embed-wrap">
-            <iframe
-              id="subscribe-embed"
-              src="https://risala.athari.dev/embed"
-              width="100%"
-              height="520"
-              title="Subscribe to the Athari.dev newsletter"
-              aria-label="Subscribe to the Athari.dev newsletter"
-              loading="lazy"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3"  y="13" width="3" height="8"  rx="1.5" fill="currentColor" opacity="0.45"/>
-            <rect x="10.5" y="8" width="3" height="13" rx="1.5" fill="currentColor" opacity="0.7"/>
-            <rect x="18" y="3"  width="3" height="18" rx="1.5" fill="currentColor"/>
-          </svg>
-        </span>
-        <div>
-          <p class="footer-name">Athari<span class="brand-tld">.dev</span></p>
-          <p class="footer-tag">The AI &amp; Cloud Briefing for the GCC — and beyond</p>
-        </div>
-      </div>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="#coverage">Coverage</a>
-        <a href="#issue">Inside an issue</a>
-        <a href="#audience">Who it's for</a>
-        <a href="#subscribe">Subscribe</a>
-      </nav>
-      <p class="footer-meta">
-        <span lang="ar" dir="rtl" class="footer-ar">أَثَر</span> — a trace, a signal, an impact.<br>
-        © <span id="year">2026</span> Athari.dev · Dubai, UAE
-      </p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
+      main { text-align: center; padding: 24px; }
+      .logo {
+        font-size: clamp(2.2rem, 8vw, 4.6rem);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #eafbe7;
+        text-shadow: 0 0 18px rgba(70, 242, 122, 0.35);
+      }
+      .logo em { font-style: normal; color: #46f27a; }
+      .line {
+        margin-top: 22px;
+        min-height: 1.4em;
+        font-size: clamp(0.95rem, 2.6vw, 1.25rem);
+        letter-spacing: 0.12em;
+        color: rgba(70, 242, 122, 0.85);
+      }
+      .cursor {
+        display: inline-block;
+        width: 0.55em;
+        height: 1.1em;
+        margin-left: 2px;
+        background: #46f27a;
+        vertical-align: text-bottom;
+        animation: blink 1.05s steps(1) infinite;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) {
+        .cursor { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="logo">athari<em>.dev</em></p>
+      <p class="line" aria-label="welcome to the matrix"><span id="typed"></span><span class="cursor"></span></p>
+    </main>
+    <script>
+      const text = "welcome to the matrix";
+      const out = document.getElementById("typed");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) {
+        out.textContent = text;
+      } else {
+        let i = 0;
+        (function type() {
+          if (i <= text.length) {
+            out.textContent = text.slice(0, i++);
+            setTimeout(type, 46 + Math.random() * 70);
+          }
+        })();
+      }
+    </script>
+  </body>
 </html>
