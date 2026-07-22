@@ -1,81 +1,496 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="athari.dev" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>athari.dev</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="athari.dev is a private, invitation-only digital property.">
+    <meta name="theme-color" content="#07070b">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://athari.dev/">
+    <meta property="og:title" content="athari.dev — Invitation only">
+    <meta property="og:description" content="A private digital property. Access is granted by invitation.">
+    <meta property="og:image" content="https://athari.dev/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="athari.dev — Invitation only">
+    <meta name="twitter:description" content="A private digital property. Access is granted by invitation.">
+    <meta name="twitter:image" content="https://athari.dev/og.png">
+    <link rel="canonical" href="https://athari.dev/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>athari.dev — Invitation only</title>
     <style>
-      * { box-sizing: border-box; margin: 0; }
-      html, body { height: 100%; }
-      body {
-        display: grid;
-        place-items: center;
-        background: #000;
-        color: #46f27a;
-        font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-        overflow: hidden;
+      :root {
+        color-scheme: dark;
+        --ink: #f5f3ff;
+        --muted: #9d99ad;
+        --line: rgba(255, 255, 255, 0.105);
+        --violet: #8b5cf6;
+        --violet-light: #c4b5fd;
+        --surface: rgba(14, 12, 22, 0.68);
+        --mx: 50%;
+        --my: 40%;
       }
-      /* Faint scanlines, very quiet. */
-      body::after {
-        content: "";
+
+      * { box-sizing: border-box; }
+
+      html {
+        min-width: 320px;
+        min-height: 100%;
+        background: #07070b;
+      }
+
+      body {
+        min-height: 100svh;
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at var(--mx) var(--my), rgba(139, 92, 246, 0.13), transparent 25rem),
+          radial-gradient(ellipse at 78% 112%, rgba(84, 46, 190, 0.2), transparent 42%),
+          #07070b;
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
         position: fixed;
         inset: 0;
-        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0 1px, transparent 1px 3px);
+        z-index: 5;
         pointer-events: none;
+        content: "";
+        opacity: 0.26;
+        background-image:
+          repeating-radial-gradient(circle at 17% 39%, transparent 0 1px, rgba(255,255,255,.045) 1px 1.5px),
+          repeating-linear-gradient(91deg, transparent 0 34px, rgba(255,255,255,.012) 35px);
+        background-size: 4px 4px, 100% 100%;
+        mix-blend-mode: soft-light;
       }
-      main { text-align: center; padding: 24px; }
-      .logo {
-        font-size: clamp(2.2rem, 8vw, 4.6rem);
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        color: #eafbe7;
-        text-shadow: 0 0 18px rgba(70, 242, 122, 0.35);
+
+      a { color: inherit; }
+
+      .shell {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        min-height: 100svh;
+        grid-template-rows: auto 1fr auto;
+        padding: clamp(1.25rem, 3vw, 2.3rem) clamp(1.15rem, 4vw, 4.75rem);
       }
-      .logo em { font-style: normal; color: #46f27a; }
-      .line {
-        margin-top: 22px;
-        min-height: 1.4em;
-        font-size: clamp(0.95rem, 2.6vw, 1.25rem);
-        letter-spacing: 0.12em;
-        color: rgba(70, 242, 122, 0.85);
+
+      .grid {
+        position: fixed;
+        z-index: -3;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.55;
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: clamp(5rem, 10vw, 9rem) clamp(5rem, 10vw, 9rem);
+        mask-image: linear-gradient(to bottom, black, transparent 86%);
       }
-      .cursor {
+
+      .beam {
+        position: fixed;
+        z-index: -2;
+        top: -42vh;
+        left: 55%;
+        width: 1px;
+        height: 150vh;
+        pointer-events: none;
+        transform: rotate(25deg);
+        background: linear-gradient(transparent 7%, rgba(196,181,253,.72) 45%, transparent 86%);
+        box-shadow: 0 0 38px 8px rgba(139,92,246,.25), 0 0 150px 38px rgba(139,92,246,.08);
+      }
+
+      .aurora {
+        position: fixed;
+        z-index: -2;
+        right: -12rem;
+        bottom: -16rem;
+        width: min(66vw, 60rem);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(2px);
+        background:
+          radial-gradient(circle at 50% 50%, transparent 48%, rgba(138,92,246,.7) 49%, transparent 50.5%),
+          radial-gradient(circle at 50% 50%, transparent 58%, rgba(109,63,227,.38) 58.5%, transparent 60%),
+          conic-gradient(from 185deg, transparent 0 48%, rgba(179,147,255,.22) 52%, transparent 61%);
+        animation: drift 15s ease-in-out infinite alternate;
+      }
+
+      .aurora::after {
+        position: absolute;
+        inset: 31%;
+        border-radius: 50%;
+        content: "";
+        background: rgba(139, 92, 246, 0.14);
+        box-shadow: 0 0 130px 55px rgba(139, 92, 246, 0.22);
+      }
+
+      .nav,
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.72rem;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 0.92rem;
+        font-weight: 680;
+        letter-spacing: -0.035em;
+        text-decoration: none;
+        text-transform: none;
+      }
+
+      .brand-mark {
+        position: relative;
+        width: 1.15rem;
+        aspect-ratio: 1;
+        border: 1px solid rgba(196,181,253,.55);
+        border-radius: 50%;
+        box-shadow: inset 0 0 12px rgba(139,92,246,.3), 0 0 18px rgba(139,92,246,.2);
+      }
+
+      .brand-mark::before {
+        position: absolute;
+        inset: 3px;
+        border: 1px solid rgba(255,255,255,.55);
+        border-radius: 50%;
+        content: "";
+        clip-path: inset(0 47% 0 0);
+        transform: rotate(32deg);
+      }
+
+      .access-state {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: #aaa5ba;
+      }
+
+      .access-state::before {
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 50%;
+        background: var(--violet-light);
+        box-shadow: 0 0 12px rgba(196,181,253,.85);
+        content: "";
+        animation: pulse 2.8s ease-in-out infinite;
+      }
+
+      main {
+        display: grid;
+        align-items: center;
+        padding: clamp(4rem, 10vh, 8.5rem) 0;
+      }
+
+      .hero {
+        display: grid;
+        width: min(100%, 82rem);
+        margin: 0 auto;
+        grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.43fr);
+        align-items: end;
+        gap: clamp(3rem, 8vw, 9rem);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        margin: 0 0 1.45rem;
+        color: var(--violet-light);
+        font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+        font-size: 0.69rem;
+        font-weight: 560;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 2.5rem;
+        height: 1px;
+        content: "";
+        background: linear-gradient(90deg, var(--violet), rgba(139,92,246,.08));
+      }
+
+      h1 {
+        max-width: 11ch;
+        margin: 0;
+        font-size: clamp(4rem, 9.6vw, 9.5rem);
+        font-weight: 470;
+        letter-spacing: -0.078em;
+        line-height: 0.82;
+        text-wrap: balance;
+      }
+
+      .word {
+        position: relative;
         display: inline-block;
-        width: 0.55em;
-        height: 1.1em;
-        margin-left: 2px;
-        background: #46f27a;
-        vertical-align: text-bottom;
-        animation: blink 1.05s steps(1) infinite;
+        color: transparent;
+        background: linear-gradient(112deg, #fff 18%, #d9ceff 48%, #8b5cf6 76%, #faf9ff 90%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-size: 220% auto;
+        animation: shimmer 8s linear infinite;
       }
-      @keyframes blink { 50% { opacity: 0; } }
+
+      .side {
+        padding-bottom: 0.6rem;
+      }
+
+      .description {
+        max-width: 28rem;
+        margin: 0 0 2rem;
+        color: #aaa6b5;
+        font-size: clamp(1rem, 1.35vw, 1.18rem);
+        line-height: 1.65;
+        text-wrap: pretty;
+      }
+
+      .description strong {
+        color: #f2effa;
+        font-weight: 520;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.35rem;
+      }
+
+      .enter {
+        --tx: 0px;
+        --ty: 0px;
+        position: relative;
+        display: inline-flex;
+        min-height: 3.5rem;
+        align-items: center;
+        justify-content: center;
+        gap: 1.15rem;
+        overflow: hidden;
+        padding: 0.2rem 0.35rem 0.2rem 1.3rem;
+        border: 1px solid rgba(255,255,255,.85);
+        border-radius: 999px;
+        color: #0b0910;
+        background: #f6f3ff;
+        box-shadow: 0 12px 45px rgba(139,92,246,.22);
+        font-size: 0.8rem;
+        font-weight: 720;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        transform: translate(var(--tx), var(--ty));
+        transition: transform .25s ease, box-shadow .25s ease;
+      }
+
+      .enter::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(100deg, transparent 20%, rgba(139,92,246,.16) 45%, transparent 70%);
+        transform: translateX(-120%);
+        transition: transform .65s ease;
+      }
+
+      .enter:hover::before { transform: translateX(120%); }
+
+      .enter:hover {
+        box-shadow: 0 18px 60px rgba(139,92,246,.34);
+      }
+
+      .enter:focus-visible,
+      .brand:focus-visible {
+        outline: 2px solid var(--violet-light);
+        outline-offset: 5px;
+      }
+
+      .enter-icon {
+        display: grid;
+        width: 2.8rem;
+        height: 2.8rem;
+        place-items: center;
+        border-radius: 50%;
+        color: white;
+        background: #17121f;
+        font-size: 1rem;
+        transition: transform .3s ease;
+      }
+
+      .enter:hover .enter-icon { transform: rotate(45deg); }
+
+      .microcopy {
+        color: #777282;
+        font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+        font-size: 0.64rem;
+        line-height: 1.5;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .footer {
+        color: #696574;
+      }
+
+      .footer > div {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 3vw, 2.6rem);
+      }
+
+      .index { color: #aaa5b4; }
+
+      .clock { min-width: 7.1rem; text-align: right; }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        animation: reveal .9s cubic-bezier(.2,.8,.2,1) forwards;
+      }
+
+      .delay-1 { animation-delay: .08s; }
+      .delay-2 { animation-delay: .2s; }
+      .delay-3 { animation-delay: .34s; }
+
+      @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+      @keyframes shimmer { to { background-position: -220% center; } }
+      @keyframes pulse { 50% { opacity: .45; transform: scale(.75); } }
+      @keyframes drift { to { transform: translate(-2.5rem, -1.5rem) rotate(8deg); } }
+
+      @media (max-width: 860px) {
+        .hero {
+          width: min(100%, 42rem);
+          grid-template-columns: 1fr;
+          align-items: start;
+          gap: 2.8rem;
+        }
+
+        h1 { font-size: clamp(4.2rem, 16vw, 7.2rem); }
+        .side { padding-left: clamp(0rem, 8vw, 4rem); }
+        .aurora { right: -16rem; width: 52rem; opacity: .7; }
+      }
+
+      @media (max-width: 560px) {
+        .shell { padding: 1.25rem; }
+        .access-state span { display: none; }
+        main { padding: 4.8rem 0; }
+        .hero { gap: 2.3rem; }
+        h1 { font-size: clamp(4rem, 19.5vw, 6.2rem); }
+        .side { padding-left: 0; }
+        .footer .coordinates { display: none; }
+        .description { font-size: .98rem; }
+        .microcopy { width: 100%; }
+      }
+
       @media (prefers-reduced-motion: reduce) {
-        .cursor { animation: none; }
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: .01ms !important;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <p class="logo">athari<em>.dev</em></p>
-      <p class="line" aria-label="welcome to the matrix"><span id="typed"></span><span class="cursor"></span></p>
-    </main>
+    <div class="shell">
+      <div class="grid" aria-hidden="true"></div>
+      <div class="beam" aria-hidden="true"></div>
+      <div class="aurora" aria-hidden="true"></div>
+
+      <nav class="nav reveal" aria-label="Primary">
+        <a class="brand" href="/" aria-label="athari.dev home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>athari.dev</span>
+        </a>
+        <div class="access-state" role="status" aria-label="Access is restricted">
+          <span>Access restricted</span>
+        </div>
+      </nav>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <p class="eyebrow reveal delay-1">Private digital property</p>
+            <h1 id="hero-title" class="reveal delay-2">The door opens by <span class="word">invitation.</span></h1>
+          </div>
+
+          <div class="side reveal delay-3">
+            <p class="description">
+              <strong>athari.dev is invitation only.</strong> A deliberately small space for ideas, experiments, and things worth thinking through.
+            </p>
+            <div class="actions">
+              <a class="enter" href="https://brainstorm.athari.dev/" data-magnetic>
+                <span>Enter Brainstorm</span>
+                <span class="enter-icon" aria-hidden="true">↗</span>
+              </a>
+              <span class="microcopy">Invitees sign in<br>Guests may explore</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer reveal delay-3">
+        <div>
+          <span class="index">© <span id="year">2026</span> Athari</span>
+          <span class="coordinates">31.7683° N / 35.2137° E</span>
+        </div>
+        <div>
+          <span>Jerusalem</span>
+          <time class="clock" id="clock">--:--:--</time>
+        </div>
+      </footer>
+    </div>
+
     <script>
-      const text = "welcome to the matrix";
-      const out = document.getElementById("typed");
-      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) {
-        out.textContent = text;
-      } else {
-        let i = 0;
-        (function type() {
-          if (i <= text.length) {
-            out.textContent = text.slice(0, i++);
-            setTimeout(type, 46 + Math.random() * 70);
-          }
-        })();
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const root = document.documentElement;
+      const magnetic = document.querySelector('[data-magnetic]');
+      const clock = document.getElementById('clock');
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function updateClock() {
+        clock.textContent = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Jerusalem',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).format(new Date());
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      if (!reduceMotion) {
+        window.addEventListener('pointermove', (event) => {
+          root.style.setProperty('--mx', `${event.clientX}px`);
+          root.style.setProperty('--my', `${event.clientY}px`);
+        }, { passive: true });
+
+        magnetic.addEventListener('pointermove', (event) => {
+          const bounds = magnetic.getBoundingClientRect();
+          const x = (event.clientX - bounds.left - bounds.width / 2) * 0.12;
+          const y = (event.clientY - bounds.top - bounds.height / 2) * 0.16;
+          magnetic.style.setProperty('--tx', `${x}px`);
+          magnetic.style.setProperty('--ty', `${y}px`);
+        });
+
+        magnetic.addEventListener('pointerleave', () => {
+          magnetic.style.setProperty('--tx', '0px');
+          magnetic.style.setProperty('--ty', '0px');
+        });
       }
     </script>
   </body>
