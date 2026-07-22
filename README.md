@@ -1,10 +1,15 @@
 # athari.dev
 
-The invitation-only landing page for [athari.dev](https://athari.dev), served from the repository root with GitHub Pages.
+The growing project index for [athari.dev](https://athari.dev), served from the repository root with GitHub Pages.
+
+## Add a project
+
+Add one object to `projects.js`. The homepage automatically renders the card and updates the live-project count. Each entry contains its name, URL, short copy, tags, visual treatment, and accent colors.
 
 ## Structure
 
-- `index.html` — the complete responsive landing page
+- `projects.js` — the project registry
+- `index.html` — the responsive project-index experience
 - `favicon.svg` — browser icon
 - `og.png` — social preview image
 - `404.html` — redirects unknown paths home
