@@ -21,5 +21,16 @@ window.ATHARI_PROJECTS = Object.freeze([
     visual: "race",
     accent: "#c8ff3d",
     accentLight: "#ff4d3d"
+  },
+  {
+    name: "Badiyah — البادية",
+    url: "https://badiyah.athari.dev/",
+    kicker: "Playable world",
+    description: "Sands of the Ancients: a fully Arabic voxel sandbox set in 8th-century Arabia — mine, build, and ride with the tools people actually had.",
+    status: "Live",
+    tags: ["Voxel", "Arabic", "Game"],
+    visual: "badiyah",
+    accent: "#e0703c",
+    accentLight: "#f0c98a"
   }
 ]);
